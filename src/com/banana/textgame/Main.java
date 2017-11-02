@@ -43,16 +43,24 @@ public class Main {
      * Единственный параметр: dayNumber - номер текущего игрового дня.
      */
     void onNewDay(int dayNumber) {
-        Scanner keyboard = new Scanner(System.in);
-        int a = 42, b = 27;
-        String строка = "Ответ на самый главный вопрос:Сила в ньютонах брат";
-        System.out.println("Здраствуй, как тебя зовут?");
-        String код = keyboard.nextLine();
-        System.out.println("Здраствуй " + код);
-        dollars = dollars + код.length();
+        System.out.println("День номер " + dayNumber);
 
-        System.out.println("Твоя наличка: " + dollars);
-
+        Scanner клавиатура = new Scanner(System.in);
+        System.out.println("Введите :");
+        String action = клавиатура.nextLine();
+        if (action.equals("кофе")) {
+            dollars -= 2;
+            System.out.println("Кофе,ура!");
+        } else if (action.equals("пароль")) {
+            System.out.println("Введите пароль:");
+            String пароль = клавиатура.nextLine();
+            пароль = пароль.replace(" ", "");
+            int заработок = пароль.length();
+            dollars = dollars + заработок;
+            System.out.println("Всего ты заработал: " + dollars + "$.");
+        } else {
+            System.out.println("операция не поддерживаеться.");
+        }
     }
 
     /*
