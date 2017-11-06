@@ -44,23 +44,48 @@ public class Main {
      */
     void onNewDay(int dayNumber) {
         System.out.println("День номер " + dayNumber);
+        String dollarsString = "";
+        for (int i = 0; i < dollars; i += 1) {
+            dollarsString = dollarsString + "";
+        }
+        System.out.println("Ваш счёт: " + dollarsString + ".");
 
         Scanner клавиатура = new Scanner(System.in);
         System.out.println("Введите :");
         String action = клавиатура.nextLine();
-        if (action.equals("кофе")) {
-            dollars -= 2;
-            System.out.println("Кофе,ура!");
-        } else if (action.equals("пароль")) {
-            System.out.println("Введите пароль:");
-            String пароль = клавиатура.nextLine();
-            пароль = пароль.replace(" ", "");
-            int заработок = пароль.length();
-            dollars = dollars + заработок;
-            System.out.println("Всего ты заработал: " + dollars + "$.");
-        } else {
-            System.out.println("операция не поддерживаеться.");
+        switch (action.toLowerCase()) {
+            case "кофе":
+                dollars -= 2;
+                System.out.println("Кофе,ура!");
+                break;
+            case "пароль":
+                System.out.println("Введите пароль:");
+                String пароль = клавиатура.nextLine();
+                пароль = пароль.replace(" ", "");
+                int заработок = пароль.length();
+                dollars = dollars + заработок;
+                System.out.println("Всего ты заработал: " + dollars + "$.");
+                break;
+
+            default:System.out.println("операция не поддерживаеться.");
+
         }
+        //Здесь код без использование switch, только if и else
+
+           // if (action.equals("кофе")) {
+             //   dollars -= 2;
+               // System.out.println("Кофе,ура!");
+            //} else if (action.equals("пароль")) {
+              //  System.out.println("Введите пароль:");
+                //String пароль = клавиатура.nextLine();
+                //пароль = пароль.replace(" ", "");
+                //int заработок = пароль.length();
+               // dollars = dollars + заработок;
+               // System.out.println("Всего ты заработал: " + dollars + "$.");
+           // } else {
+             //   System.out.println("операция не поддерживаеться.");
+           // }
+       // }
     }
 
     /*
