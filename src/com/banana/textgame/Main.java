@@ -1,5 +1,7 @@
 package com.banana.textgame;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -39,10 +41,10 @@ public class Main {
 
     boolean trired = false;
     int dollars = 0;
-    String[] languages = {"java","Python","JavaScript","C++","Brainfuck"};
-    boolean[] knownLanguages = {true, false, false, false, false};
+    String[] languages = {"Java","Python","JavaScript","C++", "C#","Brainfuck","Pascal"};
+    boolean[] knownLanguages = {true, false, false, false, false, false, false};
     Scanner keyboard = new Scanner(System.in);
-
+ArrayList компания =
     /*
      * Каждую игровую ночь ничего не происходит!
      * Метод вызывается каждый игровый день.
@@ -61,8 +63,12 @@ public class Main {
         System.out.println("Введите :");
         String action = клавиатура.nextLine();
         switch (action.toLowerCase()) {
+            case "поглатить кусочек пиццы":
+                съестьпиццу();
+                break;
             case "изучить":
                 LearnLanguage();
+                break;
             case "кофе":
                 dollars -= 2;
                 System.out.println("Кофе,ура!");
@@ -104,7 +110,7 @@ public class Main {
      * Метод вызывается по завершению игры.
      */
     void onFinish() {
-        System.out.print("Приехали, ты заработал:" + dollars + "$");}
+        System.out.print("Всё! лавочка закрылась, ты заработал:" + dollars + "$");}
 
         //действия
 
@@ -129,6 +135,26 @@ public class Main {
         }
     }
 
+    void съестьпиццу() {
+        System.out.println("Сколько кусков пиццы");
+        int количествоКусков = keyboard.nextInt();
+        съестьПиццу(количествоКусков, 2);
+    }
 
+    void съестьПиццу(int количествоКусков, int стоимостьПиццы){
+        System.out.println("Вы поглатили"+ количествоКусков + "кусков пиццы.");
+        dollars-=2 * количествоКусков;
+
+    }
+
+    int верниОчки() {
+        int очки = dollars;
+        for (int i = 0; i < knownLanguages.length; i = i + 1) {
+            if (knownLanguages[i] == true) {
+                очки += 10;
+            }
+        }
+        return очки;
+    }
 
 }
