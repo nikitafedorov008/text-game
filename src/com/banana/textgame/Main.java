@@ -19,7 +19,7 @@ public class Main {
      */
     private void start() {
         onStart();
-        for (int i = 1; i <= 5; ++i) {
+        for (int i = 1; i <= 183; ++i) {
             onNewDay(i);
         }
         onFinish();
@@ -140,14 +140,17 @@ ArrayList компания = new ArrayList();
     }
 
     void съестьпиццу() {
-        System.out.println("Сколько кусков пиццы");
-        keyboard.nextInt();
-        String строка = keyboard.nextLine();
-        try {
-            int количествоКусков = Integer.parseInt(строка);
-            съестьПиццу(количествоКусков, 2);
-        } catch (Exception e) {
-            System.out.println("Ошибочка. ;(");
+        boolean корректныйВвод = false;
+        while (корректныйВвод == false) {
+            System.out.println("Сколько кусков пиццы");
+            keyboard.nextInt();
+            String строка = keyboard.nextLine();
+            try {
+                int количествоКусков = Integer.parseInt(строка);
+                съестьПиццу(количествоКусков, 2);
+            } catch (Exception e) {
+                System.out.println("Ошибочка. ;(");
+            }
         }
     }
 
