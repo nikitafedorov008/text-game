@@ -6,6 +6,10 @@ import java.util.Scanner;
 
 public class Main {
 
+    static String[] languages = {"Java","Python","JavaScript","C++", "C#","Brainfuck","Pascal"};
+    Scanner keyboard = new Scanner(System.in);
+    User user = new User();
+
     /*
      * Главный метод. Есть главнейший метод/
      */
@@ -39,13 +43,6 @@ public class Main {
         System.out.println("Здраствуй " + answer);
     }
 
-
-    boolean trired = false;
-    int bitcoins = 0;
-    String[] languages = {"Java","Python","JavaScript","C++", "C#","Brainfuck","Pascal"};
-    boolean[] knownLanguages = {true, false, false, false, false, false, false};
-    Scanner keyboard = new Scanner(System.in);
-ArrayList компания = new ArrayList();
     /*
      * Каждую игровую ночь ничего не происходит!
      * Метод вызывается каждый игровый день.
@@ -53,12 +50,12 @@ ArrayList компания = new ArrayList();
      */
     void onNewDay(int dayNumber) {
         System.out.println("День номер " + dayNumber);
+        user.printInfo();
         String bitcoinsString = "";
-        for (int i = 0; i < bitcoins; i += 1) {
+        for (int i = 0; i < user.bitcoins; i += 1) {
             bitcoinsString = bitcoinsString + "";
         }
         System.out.println("Ваш счёт: " + bitcoinsString + ".");
-        напечатайИзвестныеЯзыки();
 
         Scanner клавиатура = new Scanner(System.in);
         System.out.println("Введите :");
@@ -72,18 +69,18 @@ ArrayList компания = new ArrayList();
                 LearnLanguage();
                 break;
             case "кофе":
-                bitcoins -= 2;
+                user.bitcoins -= 2;
                 System.out.println("Кофе,ура!");
             case "пароль":
                 System.out.println("Введите пароль:");
                 String пароль = клавиатура.nextLine();
                 пароль = пароль.replace(" ", "");
                 int заработок = пароль.length();
-                bitcoins = bitcoins + заработок;
-                System.out.println("Всего ты заработал: " + bitcoins + "$.");
+               user. bitcoins = user.bitcoins + заработок;
+                System.out.println("Всего ты заработал: " + user.bitcoins + "$.");
                 break;
             case "устал":
-                trired = true;
+                user.trired = true;
                 break;
             case "найти работу":
                 НайтиРаботу();
@@ -114,7 +111,7 @@ ArrayList компания = new ArrayList();
      * Метод вызывается по завершению игры.
      */
     void onFinish() {
-        System.out.print("Всё! лавочка закрылась, ты заработал:" + bitcoins + "$");}
+        System.out.print("Всё! лавочка закрылась, ты заработал:" + user.bitcoins + "$");}
 
         //действия
 
@@ -124,20 +121,12 @@ ArrayList компания = new ArrayList();
 
             for (int i = 0; i < languages.length; ++i) {
                 if (languages[i].equals(выбранныйязык)) {
-                    knownLanguages[i] = true;
-                    bitcoins -= 20;
+                    user.knownLanguages[i] = true;
+                    user.bitcoins -= 20;
                 }
             }
     }
 
-    void напечатайИзвестныеЯзыки() {
-                System.out.println("Вы знаете: ");
-        for (int i = 0; i < languages.length; ++i) {
-            if (knownLanguages[i] == true) {
-                System.out.println(languages[i]);
-            }
-        }
-    }
 
     void съестьпиццу() {
         boolean корректныйВвод = false;
@@ -156,20 +145,21 @@ ArrayList компания = new ArrayList();
 
     void съестьПиццу(int количествоКусков, int стоимостьПиццы){
         System.out.println("Вы поглатили"+ количествоКусков + "кусков пиццы.");
-        bitcoins-=2 * количествоКусков;
+        Pizza вахКакаяПицца  = new Pizza();
+        user.bitcoins-= вахКакаяПицца.getPrice(количествоКусков);
 
     }
 
     void НайтиРаботу(){
         System.out.println("Какую работу Хотите?");
         String compani = keyboard.nextLine();
-        компания.add(compani);
+        user.компания.add(compani);
     }
 
     int верниОчки() {
-        int очки = bitcoins;
-        for (int i = 0; i < knownLanguages.length; i = i + 1) {
-            if (knownLanguages[i] == true) {
+        int очки = user.bitcoins;
+        for (int i = 0; i < user.knownLanguages.length; i = i + 1) {
+            if (user.knownLanguages[i] == true) {
                 очки += 10;
             }
         }
