@@ -41,6 +41,7 @@ public class Main {
         System.out.println(v);
         String answer = keyboard.nextLine();
         System.out.println("Здраствуй " + answer);
+        System.out.println("Команды ввода: 'найти работу','поглатить кусочек пиццы','устал','кофе','верни очки','язык'");
     }
 
     /*
